@@ -1,0 +1,42 @@
+body {
+    background-color: #fafafa;
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    display: block;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    max-width: 1128px;
+    max-height: 696px;
+    padding: 24px 156px;
+    background-color: #FFF;
+    margin: auto;
+}
+
+.gallery-item {
+    flex-basis: calc((100% - 48 px) / 3);
+}
+
+.gallery-image {
+    width: 360px;
+    height: 200px;
+
+    transition: transform 250ms ease-in-out;
+}
+
+.gallery-image:hover {
+    transform: scale(1.1);
+}
+
+.modal-img {
+    width: 1112px;
+    height: 640px;
+}
