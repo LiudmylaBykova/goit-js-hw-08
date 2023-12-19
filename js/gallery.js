@@ -84,16 +84,23 @@ function onGalleryClick(event) {
   const original = event.target.dataset.source;
   const description = event.target.dataset.description;
 
-  instance = basicLightbox.create(`
-      <div class="modal">
-    <img class="modal-img"
-        src= "${original}"
-        alt="${description}"
-      />
-</div>
-  `);
+  instance = basicLightbox.create(
+    `<div class="modal">
+        <img class="modal-img"
+          src= "${original}"
+          alt="${description}"
+        />
+     </div>`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", onModalClose);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", onModalClose);
+      },
+    }
+  );
   instance.show();
-  document.addEventListener("keydown", onModalClose);
 }
 
 function createMarcup(arr) {
@@ -117,6 +124,5 @@ function createMarcup(arr) {
 function onModalClose(event) {
   if (event.code === "Escape") {
     instance.close();
-    document.removeEventListener("keydown", onModalClose);
   }
 }
