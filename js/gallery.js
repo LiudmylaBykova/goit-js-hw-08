@@ -78,29 +78,28 @@ refs.gallery.addEventListener("click", onGalleryClick);
 
 function onGalleryClick(event) {
   event.preventDefault();
-  if (event.target === event.currentTarget) {
-    return;
-  }
-  const original = event.target.dataset.source;
-  const description = event.target.dataset.description;
+  if (event.target.classList.contains("gallery-image")) {
+    const original = event.target.dataset.source;
+    const description = event.target.dataset.description;
 
-  instance = basicLightbox.create(
-    `<div class="modal">
+    instance = basicLightbox.create(
+      `<div class="modal">
         <img class="modal-img"
           src= "${original}"
           alt="${description}"
         />
      </div>`,
-    {
-      onShow: () => {
-        document.addEventListener("keydown", onModalClose);
-      },
-      onClose: () => {
-        document.removeEventListener("keydown", onModalClose);
-      },
-    }
-  );
-  instance.show();
+      {
+        onShow: () => {
+          document.addEventListener("keydown", onModalClose);
+        },
+        onClose: () => {
+          document.removeEventListener("keydown", onModalClose);
+        },
+      }
+    );
+    instance.show();
+  }
 }
 
 function createMarcup(arr) {
